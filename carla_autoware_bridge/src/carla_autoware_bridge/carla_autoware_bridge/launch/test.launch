@@ -1,0 +1,16 @@
+<launch>    
+    <arg name='test_param' default='Hello!'/>
+    <!-- <param name='test_param' default='Hello!'/> -->
+    <node pkg="carla_autoware_bridge" exec="test_pub_node" name="test_pub_node_start_by_xml" output="screen">
+        <!-- <remap from="/test_topic" to="/test_topic_relay"/> -->
+        <!-- <param name="test_param" value="hello_world"/> -->
+        <param name="test_param" value="$(arg test_param)"/>
+        
+    </node>
+    <node pkg="topic_tools" exec="relay" name="test_topic_relay" output="log">
+        <param name="input_topic" value="test_topic"/>
+        <param name="output_topic" value="test_topic_relay"/>
+        <param name="type" value="Int32"/>
+        <param name="reliability" value="best_effort"/>
+    </node>
+</launch>

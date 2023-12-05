@@ -1,0 +1,8 @@
+<launch>    
+    <node pkg="topic_tools" exec="relay" name="test_topic_relay" output="log">
+        <param name="input_topic" value="test_topic"/>
+        <param name="output_topic" value="test_topic_relay"/>
+        <param name="type" value="Int32"/>
+        <param name="reliability" value="best_effort"/>
+    </node>
+</launch>
